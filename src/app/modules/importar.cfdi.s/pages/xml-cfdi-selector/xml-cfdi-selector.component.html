@@ -1,0 +1,34 @@
+<app-header></app-header>
+<div class="content" role="main">
+  
+    <!-- Next Steps -->
+    <div class="tool-header">
+      <h2>Next Steps</h2>
+      <p>What do you want to do next with your app?</p>
+    </div>
+  
+    <div class="tool">
+      <div id="workarea" class="tool_work-area" (dragenter)="showDropArea()" >
+        <div id="dropArea" style="display: none;" (dragleave)="hideDropArea()" (dragover)="goDrop($event)" (drop)="getFileList($event)">¡Suéltalo!</div>
+        <div id="uploader" class="uploader">
+          <input class="FilePicker" type="file" accept=".xml" multiple style="display: none;" (change)="getFilesFromFilePicker($event)">
+          <a class="uploader__btn" id="pickfiles" (click)="openFilePicker($event)" >
+              <span>Seleccionar archivos CFDI</span>
+          </a>
+          <div class="uploader__droptxt">o arrastra y suelta los CFDI aquí</div>
+          
+        </div>
+        <div id="file-groups" class="fie-list-wrapper" *ngIf="files">
+          <div class="file" *ngFor="let file of files">
+            <div class="file-actions" style="display: none;">
+            </div>
+            <div class="file-img">
+              <a href="https://www.flaticon.es/iconos-gratis/xml"  title="xml iconos"></a>                
+            </div>
+            <div class="file-info">
+              <span class="file-info-name">{{file.name}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
