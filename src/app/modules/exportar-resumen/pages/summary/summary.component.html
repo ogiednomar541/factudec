@@ -1,0 +1,102 @@
+<app-header></app-header>
+<div class="contents" role="main" >
+    <div class="tool-header">
+        <h2>Resumen </h2>
+        <p>Encuentra un resumen sencillo de tus facturas. Filtra los resultados a tu conveniencia. Facilita tus declaraciones fiscales u organiza tus operaciones.</p>
+    </div>
+    <div class="summary-table">
+    
+        <table>
+            
+            <thead>
+                <tr>
+                    <th>
+                        Fecha
+                    </th>
+                    <th>
+                        <div id="list1" class="dropdown-check-list" tabindex="100">
+                            <span class="anchor" (click)="mf($event)">Mes</span>
+                            <ul class="items">
+                              <li *ngFor="let item of mesesList"><input type="checkbox" id="{{item}}" [checked]="true" (click)="monthFilter(item)"/> {{item}}</li>
+                            </ul>
+                          </div>
+                    </th>
+                    <th>
+                        <div id="list2" class="dropdown-check-list" tabindex="100">
+                            <span class="anchor" (click)="tf($event)">Tipo</span>
+                            <ul class="items">
+                              <li *ngFor="let item of tipoCfdiList"><input type="checkbox" id="{{item}}" [checked]="true" (click)="typeFilter(item)"/> {{item}}</li>
+                            </ul>
+                          </div>
+                    </th>
+                    <th>
+                        <div id="list5" class="dropdown-check-list" tabindex="100">
+                            <span class="anchor" (click)="vf($event)">Versión</span>
+                            <ul class="items">
+                              <li *ngFor="let item of vList"><input type="checkbox" id="{{item}}" [checked]="true" (click)="vFilter(item)" /> {{item}}</li>
+                            </ul>
+                          </div>
+                    </th>
+                    <th>
+                        <div id="list3" class="dropdown-check-list" tabindex="100">
+                            <span class="anchor" (click)="rsf($event)">Razón social</span>
+                            <ul class="items">
+                              <li *ngFor="let item of RSList"><input type="checkbox" id="{{item}}" [checked]="true" (click)="rsFilter(item)" /> {{item}}</li>
+                            </ul>
+                          </div>
+                    </th>
+                    <th>Imp. Exento</th>
+                    <th>Imp. Gravado</th>
+                    <th>IVA</th>
+                    <th>Imp. Retenido</th>
+                    <th>Neto</th>
+                    <th>
+                        <div id="list4" class="dropdown-check-list" tabindex="100">
+                            <span class="anchor" (click)="rfcf($event)">RFC IDIOT</span>
+                            <ul class="items">
+                              <li *ngFor="let item of rfcList"><input type="checkbox" id="{{item}}" [checked]="true" (click)="rfcFilter(item)" /> {{item}}</li>
+                            </ul>
+                          </div>
+                    </th>
+                    <th>Concepto</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let cfdi of CFDIFiltered">
+                    <td>{{getStringDateM(cfdi._Fecha)}}</td>
+                    <td>{{getStringM(cfdi._Fecha)}}</td>
+                    <td>{{cfdi._TipoDeComprobante}}</td>
+                    <td>{{cfdi._Version}}</td>
+                    <td>{{cfdi.Emisor._Nombre}}</td>
+                    <td>{{currency(getImpEx(cfdi))}}</td>
+                    <td>{{currency(getImpGrav(cfdi))}}</td>
+                    <td>{{currency(getIva(cfdi))}}</td>
+                    <td>{{currency(0)}}</td>
+                    <td>{{currency(cfdi._Total)}}</td>
+                    <td>{{cfdi.Emisor._Rfc}}</td>
+                    <td>{{getConcepts(cfdi.Conceptos)}}</td>
+                </tr>
+
+
+                
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <td>Total</td>
+                    <td>{{currency(t_exentos)}}</td>
+                    <td>{{currency(t_gravados)}}</td>
+                    <td>{{currency(t_iva)}}</td>
+                    <td>{{currency(t_retenido)}}</td>
+                    <td>{{currency(t_neto)}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+            
+        </table>
+    
+    </div>
+    
+</div>

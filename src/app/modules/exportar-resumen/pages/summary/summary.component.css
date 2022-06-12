@@ -1,0 +1,43 @@
+
+.dropdown-check-list {
+    display: inline-block;
+  }
+  
+ 
+  .dropdown-check-list .anchor {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 50px 5px 10px;
+    background: url('https://cdn0.iconfinder.com/data/icons/mobile-basic-vol-1/32/Filter-512.png') no-repeat;
+    background-size: 20px;
+    background-position:  right 10px center;
+  }
+  
+  
+  .dropdown-check-list .anchor:active:after {
+    right: 8px;
+    top: 21%;
+  }
+  
+  .dropdown-check-list ul.items {
+    padding: 2px;
+    display: none;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+  
+  .dropdown-check-list ul.items li {
+    list-style: none;
+    text-align: left;
+  }
+  
+  .dropdown-check-list.visible .anchor {
+    color: #0094ff;
+  }
+  
+  .dropdown-check-list.visible .items {
+    display: block;
+  }
+  
